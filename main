@@ -1,0 +1,21 @@
+package main
+
+import (
+	"github.com/dspencerr/docParser/fileMgr"
+	"fmt"
+	"github.com/dspencerr/docParser/fileWriter"
+)
+
+func main() {
+
+	source_path := "C:\\Projects\\Go\\src\\github.com\\dspencerr\\docParser\\docTemp\\source"
+	target_path := "C:\\Projects\\Go\\src\\github.com\\dspencerr\\docParser\\docTemp\\target"
+
+	fileMgr.SetupEnvironment(source_path, target_path)
+	fileMgr.WalkTheFileStructure()
+	fmt.Println(len(fileMgr.FilesToParse))
+	//	//fileMgr.UpdateProgress(progressBar)
+	fileMgr.ParseFileByFile()
+	fmt.Println("Missed Docs: ", fileWriter.MissedDocs)
+
+}
